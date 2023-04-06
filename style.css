@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
+body {
+    background-color: #8fc7ca;
+    /* font-family: 'Delicious Handrawn', cursive; */
+    block-size: auto;
+}
+
+.footerContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    color: #ECECEC;
+    gap: 12px;
+    font-size: 24px;
+    margin-top: 16px;
+    width: 100%;
+}
