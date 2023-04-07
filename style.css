@@ -1,16 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
 body {
-    background-color: #8fc7ca;
-    /* font-family: 'Delicious Handrawn', cursive; */
+    background-color: #EEE9DA;
     block-size: auto;
-    margin: 0;
-}
-
-div {
-    border-color: #000000;
-    border-width: 1px;
-    border-style: solid;
+    font-family: 'Roboto Slab', serif;
 }
 
 .titleContainer {
@@ -22,11 +15,12 @@ div {
 }
 
 .title {
-    color: #000000;
+    color: #6096B4;
     font-size: 42px;
     margin-top: 12px;
     font-weight: 600;
     padding: 12px;
+    stroke: #5889a3;
 }
 
 .calculatorContainer {
@@ -35,16 +29,22 @@ div {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 800px;
+    height: 750px;
 }
 
-.calculatorshape {
+.calculatorShape {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 30%;
-    height: 600px;
+    height: 650px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 2px;
+    border-radius: 12px;
+    background-color: #BDCDD6;
+    box-shadow: 12px 12px 2px 1px rgba(40, 40, 42, 0.2);
 }
 
 .upperCalculator {
@@ -55,10 +55,27 @@ div {
     width: 95%;
 }
 
-.calculatorDisplay {
+.calculatorDisplayContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
     height: 100px;
     width: 100%;
+    font-size: 32px;
+    font-weight: 600;
     text-align: right;
+    border-style: groove;
+    border-color: #131212e2;
+    border-width: 2px;
+    border-radius: 6px;
+    background-color: #93BFCF;
+}
+
+.calculatorDisplay {
+    width: 600px;
+    padding-right: 12px;
+    user-select: none;
 }
 
 .calculatorControls {
@@ -67,22 +84,66 @@ div {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .clear {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 50%;
-    height: 24px;
+    height: 50px;
     text-align: center;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.clear:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .erase {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 50%;
-    height: 24px;
+    height: 50px;
     text-align: center;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.erase:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .lowerCalculator {
@@ -122,6 +183,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.seven:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .eight {
@@ -131,6 +206,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.eight:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .nine {
@@ -140,6 +229,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.nine:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .digitsSecondRow {
@@ -158,6 +261,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.four:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .five {
@@ -167,6 +284,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.five:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .six {
@@ -176,6 +307,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.six:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .digitsThirdRow {
@@ -194,6 +339,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.one:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .two {
@@ -203,7 +362,22 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
 }
+
+.two:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
+}
+
 
 .three {
     display: flex;
@@ -212,6 +386,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.three:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .digitsFourthRow {
@@ -230,6 +418,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.negative:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .zero {
@@ -239,6 +441,20 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.zero:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .decimal {
@@ -248,14 +464,28 @@ div {
     height: 100px;
     width: 30%;
     text-align: center;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #93BFCF;
+    user-select: none;
 }
+
+.decimal:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
+}
+
 
 .calculatorOperators {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding-left: 12px;
-    padding-right: 12px;
     width: 30%;
     text-align: center;
     height: 100%;
@@ -267,6 +497,20 @@ div {
     justify-content: center;
     height: 18%;
     font-size: 24px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 32px;
+    font-weight: 500;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.plusSign:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .minusSign {
@@ -275,6 +519,20 @@ div {
     justify-content: center;
     height: 18%;
     font-size: 24px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 32px;
+    font-weight: 500;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.minusSign:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .multiplySign {
@@ -283,6 +541,20 @@ div {
     justify-content: center;
     height: 18%;
     font-size: 24px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 32px;
+    font-weight: 500;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.multiplySign:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .divideSign {
@@ -291,14 +563,42 @@ div {
     justify-content: center;
     height: 18%;
     font-size: 24px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 32px;
+    font-weight: 500;
+    background-color: #93BFCF;
+    user-select: none;
 }
 
-.equals {
+.divideSign:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
+}
+
+.equalsSign {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 18%;
     font-size: 24px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px;
+    border-radius: 6px;
+    font-size: 32px;
+    font-weight: 500;
+    background-color: #93BFCF;
+    user-select: none;
+}
+
+.equalsSign:hover {
+    cursor: pointer;
+    background-color: #a6d5e6;
+    filter: brightness(100%);
 }
 
 .footerContainer {
@@ -306,7 +606,8 @@ div {
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    color: #000000;
+    color: #6096B4;
+    stroke: #5889a3;
     gap: 12px;
     font-size: 24px;
     width: 100%;
