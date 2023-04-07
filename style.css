@@ -4,6 +4,301 @@ body {
     background-color: #8fc7ca;
     /* font-family: 'Delicious Handrawn', cursive; */
     block-size: auto;
+    margin: 0;
+}
+
+div {
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    color: #000000;
+    font-size: 42px;
+    margin-top: 12px;
+    font-weight: 600;
+    padding: 12px;
+}
+
+.calculatorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 800px;
+}
+
+.calculatorshape {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 600px;
+}
+
+.upperCalculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 95%;
+}
+
+.calculatorDisplay {
+    height: 100px;
+    width: 100%;
+    text-align: right;
+}
+
+.calculatorControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.clear {
+    width: 50%;
+    height: 24px;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.erase {
+    width: 50%;
+    height: 24px;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.lowerCalculator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+}
+
+.calculatorDigitsContainer {
+    width: 70%;
+    height: 100%;
+}
+
+.calculatorDigits {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 6px;
+}
+
+.digitsFirstRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 100%;
+    gap: 12px;
+}
+
+.seven {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.eight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.nine {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.digitsSecondRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 100%;
+    gap: 12px;
+}
+
+.four {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.five {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.six {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.digitsThirdRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 100%;
+    gap: 12px;
+}
+
+.one {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.two {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.three {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.digitsFourthRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: space-around;
+    width: 100%;
+    gap: 12px;
+}
+
+.negative {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.zero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.decimal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 30%;
+    text-align: center;
+}
+
+.calculatorOperators {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 30%;
+    text-align: center;
+    height: 100%;
+}
+
+.plusSign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 18%;
+    font-size: 24px;
+}
+
+.minusSign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 18%;
+    font-size: 24px;
+}
+
+.multiplySign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 18%;
+    font-size: 24px;
+}
+
+.divideSign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 18%;
+    font-size: 24px;
+}
+
+.equals {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 18%;
+    font-size: 24px;
 }
 
 .footerContainer {
@@ -11,9 +306,10 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    color: #ECECEC;
+    color: #000000;
     gap: 12px;
     font-size: 24px;
-    margin-top: 16px;
     width: 100%;
+    font-weight: 500;
+    padding: 12px;
 }
