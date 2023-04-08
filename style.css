@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
 body {
-    background-color: #EEE9DA;
+    background-color: #F9F7F7;
     block-size: auto;
     font-family: 'Roboto Slab', serif;
 }
@@ -15,12 +15,11 @@ body {
 }
 
 .title {
-    color: #6096B4;
+    color: #3f6ea7dc;
     font-size: 42px;
     margin-top: 12px;
     font-weight: 600;
     padding: 12px;
-    stroke: #5889a3;
 }
 
 .calculatorContainer {
@@ -43,7 +42,7 @@ body {
     border-color: #000000;
     border-width: 2px;
     border-radius: 12px;
-    background-color: #BDCDD6;
+    background-color: #2f3232;
     box-shadow: 12px 12px 2px 1px rgba(40, 40, 42, 0.2);
 }
 
@@ -69,13 +68,12 @@ body {
     border-color: #131212e2;
     border-width: 2px;
     border-radius: 6px;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
 }
 
 .calculatorDisplay {
     width: 600px;
     padding-right: 12px;
-    user-select: none;
 }
 
 .calculatorControls {
@@ -107,13 +105,13 @@ body {
     border-radius: 6px;
     font-size: 22px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .clear:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -136,13 +134,13 @@ body {
     border-radius: 6px;
     font-size: 22px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .erase:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -189,13 +187,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .seven:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -212,13 +210,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .eight:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -235,13 +233,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .nine:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -267,13 +265,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .four:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -290,13 +288,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .five:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -313,13 +311,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .six:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -345,13 +343,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .one:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -368,13 +366,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .two:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -392,13 +390,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .three:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -424,13 +422,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .negative:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -447,13 +445,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .zero:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -470,13 +468,13 @@ body {
     border-radius: 6px;
     font-size: 24px;
     font-weight: 600;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .decimal:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -503,13 +501,13 @@ body {
     border-radius: 6px;
     font-size: 32px;
     font-weight: 500;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .plusSign:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -525,13 +523,13 @@ body {
     border-radius: 6px;
     font-size: 32px;
     font-weight: 500;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .minusSign:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -547,13 +545,13 @@ body {
     border-radius: 6px;
     font-size: 32px;
     font-weight: 500;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .multiplySign:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -569,13 +567,13 @@ body {
     border-radius: 6px;
     font-size: 32px;
     font-weight: 500;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .divideSign:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -591,13 +589,13 @@ body {
     border-radius: 6px;
     font-size: 32px;
     font-weight: 500;
-    background-color: #93BFCF;
+    background-color: #BDCDD6;
     user-select: none;
 }
 
 .equalsSign:hover {
     cursor: pointer;
-    background-color: #a6d5e6;
+    background-color: #d6e0e6;
     filter: brightness(100%);
 }
 
@@ -606,11 +604,10 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    color: #6096B4;
-    stroke: #5889a3;
+    color: #3f6ea7dc;
     gap: 12px;
     font-size: 24px;
     width: 100%;
-    font-weight: 500;
+    font-weight: 600;
     padding: 12px;
 }
