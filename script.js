@@ -2,13 +2,14 @@
 let numberDigitsOperation = 10;
 let operationArray = [];
 let numberArray = [];
+
 function initialize() {
     numberArray.length = 0;
     operationArray.length = 0;
     display();
 }
-// Display
 
+// Display -- Refactor for using parameters of the arrays? 
 function display() {
     if (numberArray.length <= numberDigitsOperation) {
         let display = document.querySelector(".calculatorDisplay");
@@ -18,6 +19,14 @@ function display() {
     } else {
         return;
     }
+}
+
+function displayResult() {
+    let display = document.querySelector(".calculatorDisplay");
+    // clearArray(operationArray);
+    display.textContent = operationArray;
+    // display.textContent = display.textContent.split(',').join('');
+    return;
 }
 
 // Clear 
@@ -33,7 +42,12 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-// Erase 
+// Clear array 
+function clearArray(array) {
+    array.length = 0;
+}
+
+// Erase last digit 
 let erase = document.querySelector('.erase');
 erase.addEventListener('click', removeLastDegitfromArray);
 
@@ -48,38 +62,141 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-// Operate
-// Order of operations - X / + - // For Loop pour les différentes opérations?
-
-function operate(firstNumber, operator, secondNumber) {
-
-}
-
-// Format Data in Number Array to join integers. 
-function formatedArrayNumbers() {
-    let concatenatedArrayValues = numberArray.join('');
+// Format Data in Number Array to join integers // split(',').join(''); // Peut-être ici ajout un if statement s'il y a une décimale faire une parseFloat? 
+function formatedArrayNumbers(array) {
+    let concatenatedArrayValues = array.join('');
     let formatedArray = parseInt(concatenatedArrayValues);
-    console.log(formatedArray)
     return formatedArray;
 };
 
-// Equals - Display Results different
-
 // Operators 
+// Plus Sign
 let plusSign = document.querySelector('.plusSign')
 plusSign.addEventListener("click", getPlusSign);
 
 function getPlusSign() {
-    let formatedArray = formatedArrayNumbers();
-    operationArray.push(formatedArray);
+    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    operationArray.push(formatedNumbersArray);
     operationArray.push("+");
-    numberArray.length = 0;
-    console.log(operationArray);
-    console.log(numberArray);
+    clearArray(numberArray);
+}
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "+") {
+        let formatedNumbersArray = formatedArrayNumbers(numberArray);
+        operationArray.push(formatedNumbersArray);
+        operationArray.push("+");
+        clearArray(numberArray);
+    }
+});
+
+// Minus Sign
+let minusSign = document.querySelector('.minusSign')
+minusSign.addEventListener("click", getMinusSign);
+
+function getMinusSign() {
+    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    operationArray.push(formatedNumbersArray);
+    operationArray.push("-");
+    clearArray(numberArray);
+}
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "-") {
+        let formatedNumbersArray = formatedArrayNumbers(numberArray);
+        operationArray.push(formatedNumbersArray);
+        operationArray.push("-");
+        clearArray(numberArray);
+    }
+});
+
+// Multiply Sign 
+let multiplySign = document.querySelector('.multiplySign')
+multiplySign.addEventListener("click", getMultiplySign);
+
+function getMultiplySign() {
+    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    operationArray.push(formatedNumbersArray);
+    operationArray.push("*");
+    clearArray(numberArray);
+}
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "*") {
+        let formatedNumbersArray = formatedArrayNumbers(numberArray);
+        operationArray.push(formatedNumbersArray);
+        operationArray.push("*");
+        clearArray(numberArray);
+    }
+});
+
+// Divide Sign
+let divideSign = document.querySelector('.divideSign')
+divideSign.addEventListener("click", getDivideSign);
+
+function getDivideSign() {
+    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    operationArray.push(formatedNumbersArray);
+    operationArray.push("/");
+    clearArray(numberArray);
+}
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "/") {
+        let formatedNumbersArray = formatedArrayNumbers(numberArray);
+        operationArray.push(formatedNumbersArray);
+        operationArray.push("/");
+        clearArray(numberArray);
+    }
+});
+
+// Equals - Refactoring Display Results 
+// Order of operations?
+
+let equalsSign = document.querySelector('.equalsSign')
+equalsSign.addEventListener("click", operate);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        operate();
+    }
+});
+
+function operate(firstNumber, operator, secondNumber) {
+    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    operationArray.push(formatedNumbersArray);
+    clearArray(numberArray);
+    firstNumber = operationArray[0];
+    operator = operationArray[1];
+    secondNumber = operationArray[2];
+    if (operator === "+") {
+        result = firstNumber + secondNumber;
+        clearArray(operationArray);
+        operationArray.push(result);
+        displayResult(result);
+        return result;
+    } else if (operator === "-") {
+        let result = firstNumber - secondNumber;
+        clearArray(operationArray);
+        operationArray.push(result);
+        displayResult(result);
+        return result;
+    } else if (operator === "*") {
+        let result = firstNumber * secondNumber;
+        clearArray(operationArray);
+        operationArray.push(result);
+        displayResult(result);
+        return result;
+    } else if (operator === "/") {
+        let result = firstNumber / secondNumber;
+        clearArray(operationArray);
+        operationArray.push(result);
+        displayResult(result);
+        return result;
+    }
 }
 
 // Numbers Inputs 
-
 // Page consultée pour apprendre comment ajouter des Event Listener sur les keyboard keys: https://stackoverflow.com/questions/13196945/keycode-values-for-numeric-keypad / https://www.toptal.com/developers/keycode 
 
 let numberZero = document.querySelector('.zero');
@@ -247,7 +364,7 @@ document.addEventListener("keypress", function (event) {
     if (event.key === "9") {
         if (numberArray.length < numberDigitsOperation) {
             numberArray.push(9);
-        } 12
+        }
         display();
     }
 });
