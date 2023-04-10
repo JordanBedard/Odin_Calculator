@@ -53,6 +53,8 @@ document.addEventListener("keydown", function (event) {
 });
 
 // Decimals 
+// Site pour idée de solution afin d'enlever efficacement le decimal point quand le numéro est un Float Number : https://stackoverflow.com/questions/43108843/how-to-remove-character-from-last-array-element  
+
 let decimalSign = document.querySelector('.decimal')
 decimalSign.addEventListener("click", getDecimalSign);
 
@@ -62,18 +64,28 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-// À retravailler - le "pop" fonctionne pas très bien. Peut-être utiliser replace? À tester numberArray.replace(".", " "); Est-qu'il faut shifter après ou join? À voir si ajouter formatedArrayNumbers. 
-
 function getDecimalSign() {
-    if (isFloatNumber === false) {
-        numberArray.push(".");
-        display(numberArray);
-        isFloatNumber = true;
-    } else if (isFloatNumber === true) {
-        numberArray.pop(".");
-        display(numberArray);
-        isFloatNumber = false;
+    if (!isFloatNumber) {
+        let isDecimalPointExists = false;
+        for (let i = 0; i < numberArray.length; i++) {
+            if (numberArray[i] === ".") {
+                isDecimalPointExists = true;
+                break;
+            }
+        }
+        if (!isDecimalPointExists) {
+            numberArray.push(".");
+            isFloatNumber = true;
+        }
+    } else if (isFloatNumber) {
+        let decimalPoint = numberArray[numberArray.length - 1];
+        if (decimalPoint === ".") {
+            numberArray.pop();
+            isFloatNumber = false;
+        }
     }
+    formatedArrayNumbers(numberArray);
+    display(numberArray);
 }
 
 // Formating Array 
