@@ -1,36 +1,25 @@
 // Initialize
 let numberDigitsOperation = 10;
+let isFloatNumber = false;
 let operationArray = [];
 let numberArray = [];
 
 function initialize() {
     numberArray.length = 0;
     operationArray.length = 0;
-    display();
+    isFloatNumber = false;
+    display(numberArray);
 }
 
-// Display -- Refactor for using parameters of the arrays? 
-function display() {
-    if (numberArray.length <= numberDigitsOperation) {
-        let display = document.querySelector(".calculatorDisplay");
-        display.textContent = numberArray;
-        display.textContent = display.textContent.split(',').join('');
-        return;
-    } else {
-        return;
-    }
-}
-
-function displayResult() {
+// Display 
+function display(array) {
     let display = document.querySelector(".calculatorDisplay");
-    // clearArray(operationArray);
-    display.textContent = operationArray;
-    // display.textContent = display.textContent.split(',').join('');
+    display.textContent = array;
+    display.textContent = display.textContent.split(',').join('');
     return;
 }
 
 // Clear 
-
 // Page consultée pour comprendre pourquoi quand j'utilisais "keypress", le script ne détectait pas l'utilisation du backspace ou delete button sur le keyboard, ce qui amena un changement à "keydown" dans le Event Listener pour que ça fonctionne : https://stackoverflow.com/questions/4843472/javascript-listener-keypress-doesnt-detect-backspace
 
 let clear = document.querySelector('.clear');
@@ -45,6 +34,7 @@ document.addEventListener("keydown", function (event) {
 // Clear array 
 function clearArray(array) {
     array.length = 0;
+    isFloatNumber = false;
 }
 
 // Erase last digit 
@@ -53,7 +43,7 @@ erase.addEventListener('click', removeLastDegitfromArray);
 
 function removeLastDegitfromArray() {
     numberArray.pop();
-    display();
+    display(numberArray);
 }
 
 document.addEventListener("keydown", function (event) {
@@ -62,17 +52,53 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-// Format Data in Number Array to join integers // split(',').join(''); // Peut-être ici ajout un if statement s'il y a une décimale faire une parseFloat? 
+// Decimals 
+let decimalSign = document.querySelector('.decimal')
+decimalSign.addEventListener("click", getDecimalSign);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === ".") {
+        getDecimalSign();
+    }
+});
+
+// À retravailler - le "pop" fonctionne pas très bien. Peut-être utiliser replace? À tester numberArray.replace(".", " "); Est-qu'il faut shifter après ou join? À voir si ajouter formatedArrayNumbers. 
+
+function getDecimalSign() {
+    if (isFloatNumber === false) {
+        numberArray.push(".");
+        display(numberArray);
+        isFloatNumber = true;
+    } else if (isFloatNumber === true) {
+        numberArray.pop(".");
+        display(numberArray);
+        isFloatNumber = false;
+    }
+}
+
+// Formating Array 
 function formatedArrayNumbers(array) {
-    let concatenatedArrayValues = array.join('');
-    let formatedArray = parseInt(concatenatedArrayValues);
-    return formatedArray;
+    if (isFloatNumber === false) {
+        let concatenatedArrayValues = array.join('');
+        let formatedArray = parseInt(concatenatedArrayValues);
+        return formatedArray;
+    } else if (isFloatNumber === true) {
+        let concatenatedArrayValues = array.join('');
+        let formatedArray = parseFloat(concatenatedArrayValues);
+        return formatedArray;
+    }
 };
 
 // Operators 
 // Plus Sign
 let plusSign = document.querySelector('.plusSign')
 plusSign.addEventListener("click", getPlusSign);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "+") {
+        getPlusSign();
+    }
+});
 
 function getPlusSign() {
     let formatedNumbersArray = formatedArrayNumbers(numberArray);
@@ -81,18 +107,15 @@ function getPlusSign() {
     clearArray(numberArray);
 }
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "+") {
-        let formatedNumbersArray = formatedArrayNumbers(numberArray);
-        operationArray.push(formatedNumbersArray);
-        operationArray.push("+");
-        clearArray(numberArray);
-    }
-});
-
 // Minus Sign
 let minusSign = document.querySelector('.minusSign')
 minusSign.addEventListener("click", getMinusSign);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "-") {
+        getMinusSign();
+    }
+});
 
 function getMinusSign() {
     let formatedNumbersArray = formatedArrayNumbers(numberArray);
@@ -101,18 +124,15 @@ function getMinusSign() {
     clearArray(numberArray);
 }
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "-") {
-        let formatedNumbersArray = formatedArrayNumbers(numberArray);
-        operationArray.push(formatedNumbersArray);
-        operationArray.push("-");
-        clearArray(numberArray);
-    }
-});
-
 // Multiply Sign 
 let multiplySign = document.querySelector('.multiplySign')
 multiplySign.addEventListener("click", getMultiplySign);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "*") {
+        getMultiplySign();
+    }
+});
 
 function getMultiplySign() {
     let formatedNumbersArray = formatedArrayNumbers(numberArray);
@@ -121,18 +141,15 @@ function getMultiplySign() {
     clearArray(numberArray);
 }
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "*") {
-        let formatedNumbersArray = formatedArrayNumbers(numberArray);
-        operationArray.push(formatedNumbersArray);
-        operationArray.push("*");
-        clearArray(numberArray);
-    }
-});
-
 // Divide Sign
 let divideSign = document.querySelector('.divideSign')
 divideSign.addEventListener("click", getDivideSign);
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "/") {
+        getDivideSign();
+    }
+});
 
 function getDivideSign() {
     let formatedNumbersArray = formatedArrayNumbers(numberArray);
@@ -141,17 +158,7 @@ function getDivideSign() {
     clearArray(numberArray);
 }
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "/") {
-        let formatedNumbersArray = formatedArrayNumbers(numberArray);
-        operationArray.push(formatedNumbersArray);
-        operationArray.push("/");
-        clearArray(numberArray);
-    }
-});
-
-// Equals - Refactoring Display Results 
-// Order of operations?
+// Equals - Order of operations? Peut-être utiliser Mapping Method pour les calculs faits dans un array? 
 
 let equalsSign = document.querySelector('.equalsSign')
 equalsSign.addEventListener("click", operate);
@@ -173,198 +180,189 @@ function operate(firstNumber, operator, secondNumber) {
         result = firstNumber + secondNumber;
         clearArray(operationArray);
         operationArray.push(result);
-        displayResult(result);
+        display(operationArray);
         return result;
     } else if (operator === "-") {
         let result = firstNumber - secondNumber;
         clearArray(operationArray);
         operationArray.push(result);
-        displayResult(result);
+        display(operationArray);
         return result;
     } else if (operator === "*") {
         let result = firstNumber * secondNumber;
         clearArray(operationArray);
         operationArray.push(result);
-        displayResult(result);
+        display(operationArray);
         return result;
     } else if (operator === "/") {
         let result = firstNumber / secondNumber;
         clearArray(operationArray);
         operationArray.push(result);
-        displayResult(result);
+        display(operationArray);
         return result;
     }
+    initialize();
 }
 
 // Numbers Inputs 
 // Page consultée pour apprendre comment ajouter des Event Listener sur les keyboard keys: https://stackoverflow.com/questions/13196945/keycode-values-for-numeric-keypad / https://www.toptal.com/developers/keycode 
 
 let numberZero = document.querySelector('.zero');
-numberZero.addEventListener("click", function () {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(0);
-    }
-    display();
-});
+numberZero.addEventListener("click", getNumberZero);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "0") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(0);
-        }
-        display();
+        getNumberZero();
     }
 });
 
-let numberOne = document.querySelector('.one');
-numberOne.addEventListener("click", function () {
+function getNumberZero() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(1);
+        numberArray.push(0);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberOne = document.querySelector('.one');
+numberOne.addEventListener("click", getNumberOne);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "1") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(1);
-        }
-        display();
+        getNumberOne();
     }
 });
 
-let numberTwo = document.querySelector('.two');
-numberTwo.addEventListener("click", function () {
+function getNumberOne() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(2);
+        numberArray.push(1);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberTwo = document.querySelector('.two');
+numberTwo.addEventListener("click", getNumberTwo);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "2") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(2);
-        }
-        display();
+        getNumberTwo();
     }
 });
 
-let numberThree = document.querySelector('.three');
-numberThree.addEventListener("click", function () {
+function getNumberTwo() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(3);
+        numberArray.push(2);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberThree = document.querySelector('.three');
+numberThree.addEventListener("click", getNumberThree);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "3") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(3);
-        }
-        display();
+        getNumberThree();
     }
 });
 
-let numberFour = document.querySelector('.four');
-numberFour.addEventListener("click", function () {
+function getNumberThree() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(4);
+        numberArray.push(3);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberFour = document.querySelector('.four');
+numberFour.addEventListener("click", getNumberFour);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "4") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(4);
-        }
-        display();
+        getNumberFour();
     }
 });
 
-let numberFive = document.querySelector('.five');
-numberFive.addEventListener("click", function () {
+function getNumberFour() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(5);
+        numberArray.push(4);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberFive = document.querySelector('.five');
+numberFive.addEventListener("click", getNumberFive);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "5") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(5);
-        }
-        display();
+        getNumberFive();
     }
 });
 
-let numberSix = document.querySelector('.six');
-numberSix.addEventListener("click", function () {
+function getNumberFive() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(6);
+        numberArray.push(5);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberSix = document.querySelector('.six');
+numberSix.addEventListener("click", getNumberSix);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "6") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(6);
-        }
-        display();
+        getNumberSix();
     }
 });
 
-let numberSeven = document.querySelector('.seven');
-numberSeven.addEventListener("click", function () {
+function getNumberSix() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(7);
+        numberArray.push(6);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberSeven = document.querySelector('.seven');
+numberSeven.addEventListener("click", getNumberSeven);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "7") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(7);
-        }
-        display();
+        getNumberSeven();
     }
 });
 
-let numberEight = document.querySelector('.eight');
-numberEight.addEventListener("click", function () {
+function getNumberSeven() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(8);
+        numberArray.push(7);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberEight = document.querySelector('.eight');
+numberEight.addEventListener("click", getNumberEight);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "8") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(8);
-        }
-        display();
+        getNumberEight();
     }
 });
 
-let numberNine = document.querySelector('.nine');
-numberNine.addEventListener("click", function () {
+function getNumberEight() {
     if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(9);
+        numberArray.push(8);
     }
-    display();
-});
+    display(numberArray);
+}
+
+let numberNine = document.querySelector('.nine');
+numberNine.addEventListener("click", getNumberNine);
 
 document.addEventListener("keypress", function (event) {
     if (event.key === "9") {
-        if (numberArray.length < numberDigitsOperation) {
-            numberArray.push(9);
-        }
-        display();
+        getNumberNine();
     }
 });
+
+function getNumberNine() {
+    if (numberArray.length < numberDigitsOperation) {
+        numberArray.push(9);
+    }
+    display(numberArray);
+}
