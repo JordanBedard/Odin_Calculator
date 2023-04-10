@@ -22,6 +22,7 @@ function display(array) {
 }
 
 // Clear 
+
 // Page consultée pour comprendre pourquoi quand j'utilisais "keypress", le script ne détectait pas l'utilisation du backspace ou delete button sur le keyboard, ce qui amena un changement à "keydown" dans le Event Listener pour que ça fonctionne : https://stackoverflow.com/questions/4843472/javascript-listener-keypress-doesnt-detect-backspace
 
 let clear = document.querySelector('.clear');
@@ -37,6 +38,7 @@ document.addEventListener("keydown", function (event) {
 function clearArray(array) {
     array.length = 0;
     isFloatNumber = false;
+    isNegativeNumber = false;
 }
 
 // Erase last digit 
