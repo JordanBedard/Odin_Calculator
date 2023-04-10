@@ -1,6 +1,7 @@
 // Initialize
 let numberDigitsOperation = 10;
 let isFloatNumber = false;
+let isNegativeNumber = false;
 let operationArray = [];
 let numberArray = [];
 
@@ -52,7 +53,8 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-// Decimals 
+// Decimal Sign
+
 // Site pour idée de solution afin d'enlever efficacement le decimal point quand le numéro est un Float Number : https://stackoverflow.com/questions/43108843/how-to-remove-character-from-last-array-element  
 
 let decimalSign = document.querySelector('.decimal')
@@ -84,12 +86,30 @@ function getDecimalSign() {
             isFloatNumber = false;
         }
     }
-    formatedArrayNumbers(numberArray);
+    formatingArrayNumbers(numberArray);
+    display(numberArray);
+}
+
+// Negative Sign
+let negativeSign = document.querySelector('.negative')
+negativeSign.addEventListener("click", getNegativeSign);
+
+function getNegativeSign() {
+    let firstSignArray = numberArray[0];
+    if (!isNegativeNumber && firstSignArray !== "-") {
+        numberArray.unshift("-");
+        isNegativeNumber = true;
+    } else if (isNegativeNumber && firstSignArray === "-") {
+        numberArray.shift();
+        isNegativeNumber = false;
+    }
+    formatingArrayNumbers(numberArray);
     display(numberArray);
 }
 
 // Formating Array 
-function formatedArrayNumbers(array) {
+
+function formatingArrayNumbers(array) {
     if (isFloatNumber === false) {
         let concatenatedArrayValues = array.join('');
         let formatedArray = parseInt(concatenatedArrayValues);
@@ -113,7 +133,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 function getPlusSign() {
-    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    let formatedNumbersArray = formatingArrayNumbers(numberArray);
     operationArray.push(formatedNumbersArray);
     operationArray.push("+");
     clearArray(numberArray);
@@ -130,7 +150,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 function getMinusSign() {
-    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    let formatedNumbersArray = formatingArrayNumbers(numberArray);
     operationArray.push(formatedNumbersArray);
     operationArray.push("-");
     clearArray(numberArray);
@@ -147,7 +167,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 function getMultiplySign() {
-    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    let formatedNumbersArray = formatingArrayNumbers(numberArray);
     operationArray.push(formatedNumbersArray);
     operationArray.push("*");
     clearArray(numberArray);
@@ -164,7 +184,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 function getDivideSign() {
-    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    let formatedNumbersArray = formatingArrayNumbers(numberArray);
     operationArray.push(formatedNumbersArray);
     operationArray.push("/");
     clearArray(numberArray);
@@ -181,8 +201,10 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+// À retravailler +++ 
+
 function operate(firstNumber, operator, secondNumber) {
-    let formatedNumbersArray = formatedArrayNumbers(numberArray);
+    let formatedNumbersArray = formatingArrayNumbers(numberArray);
     operationArray.push(formatedNumbersArray);
     clearArray(numberArray);
     firstNumber = operationArray[0];
