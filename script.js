@@ -208,6 +208,7 @@ document.addEventListener("keydown", function (event) {
 
 function operate(firstNumber, operator, secondNumber) {
     let formatedNumbersArray = formatingArrayNumbers(numberArray);
+    let result;
     operationArray.push(formatedNumbersArray);
     clearArray(numberArray);
     firstNumber = operationArray[0];
@@ -232,10 +233,14 @@ function operate(firstNumber, operator, secondNumber) {
         display(operationArray);
         return result;
     } else if (operator === "/") {
-        let result = firstNumber / secondNumber;
-        clearArray(operationArray);
-        operationArray.push(result);
-        display(operationArray);
+        if (firstNumber !== 0 && secondNumber !== 0) {
+            let result = firstNumber / secondNumber;
+            clearArray(operationArray);
+            operationArray.push(result);
+            display(operationArray);
+        } else if (firstNumber === 0 && secondNumber === 0) {
+            display("Error");
+        }
         return result;
     }
     initialize();
