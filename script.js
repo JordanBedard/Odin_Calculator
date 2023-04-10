@@ -9,6 +9,7 @@ function initialize() {
     numberArray.length = 0;
     operationArray.length = 0;
     isFloatNumber = false;
+    isNegativeNumber = false;
     display(numberArray);
 }
 
@@ -96,7 +97,7 @@ negativeSign.addEventListener("click", getNegativeSign);
 
 function getNegativeSign() {
     let firstSignArray = numberArray[0];
-    if (!isNegativeNumber && firstSignArray !== "-") {
+    if (!isNegativeNumber && firstSignArray !== "-" || !isNegativeNumber && firstSignArray === " ") {
         numberArray.unshift("-");
         isNegativeNumber = true;
     } else if (isNegativeNumber && firstSignArray === "-") {
