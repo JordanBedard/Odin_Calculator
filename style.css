@@ -36,7 +36,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 25%;
     height: 650px;
     border-style: solid;
     border-color: #000000;
@@ -56,7 +56,7 @@ body {
 
 .calculatorDisplayContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     height: 100px;
@@ -72,8 +72,24 @@ body {
 }
 
 .calculatorDisplay {
-    width: 600px;
-    padding-right: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 95%;
+    padding-bottom: 12px;
+    user-select: none;
+}
+
+.calculatorSecondDisplay {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 95%;
+    font-size: 16px;
+    padding-bottom: 8px;
+    user-select: none;
 }
 
 .calculatorControls {
@@ -105,7 +121,7 @@ body {
     border-radius: 6px;
     font-size: 22px;
     font-weight: 600;
-    background-color: #BDCDD6;
+    background-color: #cadbe4;
     user-select: none;
 }
 

@@ -1,31 +1,39 @@
-// Initialize
-let numberDigitsOperation = 10;
+// Initialize 
+const maxDigitNumbers = 10;
+let inputNumber = "";
+let firstNumberOperation = "";
+let operator = "";
+let secondNumberOperation = "";
+let resultOperation = 0;
 let isFloatNumber = false;
 let isNegativeNumber = false;
-let operationArray = [];
-let numberArray = [];
 
 function initialize() {
-    numberArray.length = 0;
-    operationArray.length = 0;
+    resultOperation = 0;
+    inputNumber = "";
+    firstNumberOperation = ""
+    operator = "";
+    secondNumberOperation = "";
     isFloatNumber = false;
     isNegativeNumber = false;
-    display(numberArray);
+    display(inputNumber);
 }
 
-// Display 
-function display(array) {
-    let display = document.querySelector(".calculatorDisplay");
-    display.textContent = array;
-    display.textContent = display.textContent.split(',').join('');
-    return;
+// Display
+function display(value) {
+    const display = document.querySelector(".calculatorDisplay");
+    display.textContent = value;
 }
 
-// Clear 
+// Retravailler pour display les éléments en haut de la calculatrice 
 
-// Page consultée pour comprendre pourquoi quand j'utilisais "keypress", le script ne détectait pas l'utilisation du backspace ou delete button sur le keyboard, ce qui amena un changement à "keydown" dans le Event Listener pour que ça fonctionne : https://stackoverflow.com/questions/4843472/javascript-listener-keypress-doesnt-detect-backspace
+// function displayInputValues(value, operator) {
+//     const display = document.querySelector(".calculatorSecondDisplay");
+//     display.textContent = value + operator;
+// }
 
-let clear = document.querySelector('.clear');
+// Clear Calculator
+const clear = document.querySelector('.clear');
 clear.addEventListener("click", initialize);
 
 document.addEventListener("keydown", function (event) {
@@ -34,377 +42,388 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-// Clear array 
-function clearArray(array) {
-    array.length = 0;
+function resetDecimalandNegativeSigns() {
     isFloatNumber = false;
     isNegativeNumber = false;
 }
 
-// Erase last digit 
-let erase = document.querySelector('.erase');
-erase.addEventListener('click', removeLastDegitfromArray);
-
-function removeLastDegitfromArray() {
-    numberArray.pop();
-    display(numberArray);
-}
+// Erase 
+const erase = document.querySelector('.erase');
+erase.addEventListener('click', removeLastDigitFromString);
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "Backspace") {
-        removeLastDegitfromArray();
+        removeLastDigitFromString();
     }
 });
+
+function removeLastDigitFromString() {
+    inputNumber = inputNumber.slice(0, -1);
+    display(inputNumber);
+}
 
 // Decimal Sign
 
-// Site pour idée de solution afin d'enlever efficacement le decimal point quand le numéro est un Float Number : https://stackoverflow.com/questions/43108843/how-to-remove-character-from-last-array-element  
-
-let decimalSign = document.querySelector('.decimal')
-decimalSign.addEventListener("click", getDecimalSign);
+const decimalSign = document.querySelector('.decimal')
+decimalSign.addEventListener("click", handleDecimalSign);
 
 document.addEventListener("keydown", function (event) {
     if (event.key === ".") {
-        getDecimalSign();
+        handleDecimalSign();
     }
 });
 
-function getDecimalSign() {
+function handleDecimalSign() {
     if (!isFloatNumber) {
         let isDecimalPointExists = false;
-        for (let i = 0; i < numberArray.length; i++) {
-            if (numberArray[i] === ".") {
-                isDecimalPointExists = true;
-                break;
-            }
-        }
+        if (inputNumber.includes(".") === true) {
+            isDecimalPointExists = true;
+        }   
         if (!isDecimalPointExists) {
-            numberArray.push(".");
+            inputNumber = `${inputNumber}${"."}`;
             isFloatNumber = true;
         }
     } else if (isFloatNumber) {
-        let decimalPoint = numberArray[numberArray.length - 1];
+        const decimalPoint = inputNumber.charAt(inputNumber.length - 1);
         if (decimalPoint === ".") {
-            numberArray.pop();
-            isFloatNumber = false;
+            inputNumber = inputNumber.slice(0,-1);
+            isFloatNumber = false; 
         }
     }
-    formatingArrayNumbers(numberArray);
-    display(numberArray);
+    display(inputNumber); 
 }
 
 // Negative Sign
-let negativeSign = document.querySelector('.negative')
-negativeSign.addEventListener("click", getNegativeSign);
+const negativeSign = document.querySelector('.negative')
+negativeSign.addEventListener("click", handleNegativeSign);
 
-function getNegativeSign() {
-    let firstSignArray = numberArray[0];
-    if (!isNegativeNumber && firstSignArray !== "-" || !isNegativeNumber && firstSignArray === " ") {
-        numberArray.unshift("-");
+function handleNegativeSign() {
+    const firstSignString = inputNumber.charAt(0);
+    if (!isNegativeNumber && firstSignString !== "-" || !isNegativeNumber && firstSignString === " ") {
+        inputNumber = `${"-"}${inputNumber}`;
         isNegativeNumber = true;
-    } else if (isNegativeNumber && firstSignArray === "-") {
-        numberArray.shift();
+    } else if (isNegativeNumber && firstSignString === "-") {
+        inputNumber = inputNumber.slice(1);
         isNegativeNumber = false;
     }
-    formatingArrayNumbers(numberArray);
-    display(numberArray);
+    display(inputNumber);
 }
 
-// Formating Array 
+// Operators
 
-function formatingArrayNumbers(array) {
-    if (isFloatNumber === false) {
-        let concatenatedArrayValues = array.join('');
-        let formatedArray = parseInt(concatenatedArrayValues);
-        return formatedArray;
-    } else if (isFloatNumber === true) {
-        let concatenatedArrayValues = array.join('');
-        let formatedArray = parseFloat(concatenatedArrayValues);
-        return formatedArray;
-    }
-};
-
-// Operators 
 // Plus Sign
-let plusSign = document.querySelector('.plusSign')
-plusSign.addEventListener("click", getPlusSign);
+const plusSign = document.querySelector('.plusSign')
+plusSign.addEventListener("click", handlePlusSign);
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "+") {
-        getPlusSign();
+        handlePlusSign();
     }
 });
 
-function getPlusSign() {
-    let formatedNumbersArray = formatingArrayNumbers(numberArray);
-    operationArray.push(formatedNumbersArray);
-    operationArray.push("+");
-    clearArray(numberArray);
+function handlePlusSign() {
+    operator = "+";
+    if (firstNumberOperation === "") {
+        firstNumberOperation = formatingNumbers(inputNumber);
+    } else if (firstNumberOperation !== "") {
+        if (inputNumber !== "") {
+            secondNumberOperation = formatingNumbers(inputNumber);
+            operate(firstNumberOperation, operator, secondNumberOperation);
+        }
+    }
+    inputNumber = "";
+    resetDecimalandNegativeSigns();
 }
 
 // Minus Sign
-let minusSign = document.querySelector('.minusSign')
-minusSign.addEventListener("click", getMinusSign);
+const minusSign = document.querySelector('.minusSign')
+minusSign.addEventListener("click", handleMinusSign);
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "-") {
-        getMinusSign();
+        handleMinusSign();
     }
 });
 
-function getMinusSign() {
-    let formatedNumbersArray = formatingArrayNumbers(numberArray);
-    operationArray.push(formatedNumbersArray);
-    operationArray.push("-");
-    clearArray(numberArray);
+function handleMinusSign() {
+    operator = "-";
+    if (firstNumberOperation === "") {
+        firstNumberOperation = formatingNumbers(inputNumber);
+    } else if (firstNumberOperation !== "") {
+        if (inputNumber !== "") {
+            secondNumberOperation = formatingNumbers(inputNumber);
+            operate(firstNumberOperation, operator, secondNumberOperation);
+        }
+    }
+    inputNumber = "";
+    resetDecimalandNegativeSigns();
 }
 
-// Multiply Sign 
-let multiplySign = document.querySelector('.multiplySign')
-multiplySign.addEventListener("click", getMultiplySign);
+// Multiply Sign
+const multiplySign = document.querySelector('.multiplySign')
+multiplySign.addEventListener("click", handleMultiplySign);
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "*") {
-        getMultiplySign();
+        handleMultiplySign();
     }
 });
 
-function getMultiplySign() {
-    let formatedNumbersArray = formatingArrayNumbers(numberArray);
-    operationArray.push(formatedNumbersArray);
-    operationArray.push("*");
-    clearArray(numberArray);
+function handleMultiplySign() {
+    operator = "*";
+    if (firstNumberOperation === "") {
+        firstNumberOperation = formatingNumbers(inputNumber);
+    } else if (firstNumberOperation !== "") {
+        if (inputNumber !== "") {
+            secondNumberOperation = formatingNumbers(inputNumber);
+            operate(firstNumberOperation, operator, secondNumberOperation);
+        }
+    }
+    inputNumber = "";
+    resetDecimalandNegativeSigns();
 }
 
-// Divide Sign
-let divideSign = document.querySelector('.divideSign')
-divideSign.addEventListener("click", getDivideSign);
+// Divise Sign
+const divideSign = document.querySelector('.divideSign')
+divideSign.addEventListener("click", handleDivideSign);
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "/") {
-        getDivideSign();
+        handleDivideSign();
     }
 });
 
-function getDivideSign() {
-    let formatedNumbersArray = formatingArrayNumbers(numberArray);
-    operationArray.push(formatedNumbersArray);
-    operationArray.push("/");
-    clearArray(numberArray);
+function handleDivideSign() {
+    operator = "/";
+    if (firstNumberOperation === "") {
+        firstNumberOperation = formatingNumbers(inputNumber);
+    } else if (firstNumberOperation !== "") {
+        if (inputNumber !== "") {
+            secondNumberOperation = formatingNumbers(inputNumber);
+            operate(firstNumberOperation, operator, secondNumberOperation);
+        }
+    }
+    inputNumber = "";
+    resetDecimalandNegativeSigns();
 }
 
-// Equals - Order of operations? Peut-être utiliser Mapping Method pour les calculs faits dans un array? 
+// Equals Sign
 
-let equalsSign = document.querySelector('.equalsSign')
-equalsSign.addEventListener("click", operate);
-
+const equalsSign = document.querySelector('.equalsSign')
+equalsSign.addEventListener("click", handleEqualsSign);
+    
 document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        operate();
+        handleEqualsSign();
     }
 });
 
-// À retravailler +++ 
-
-function operate(firstNumber, operator, secondNumber) {
-    let formatedNumbersArray = formatingArrayNumbers(numberArray);
-    let result;
-    operationArray.push(formatedNumbersArray);
-    clearArray(numberArray);
-    firstNumber = operationArray[0];
-    operator = operationArray[1];
-    secondNumber = operationArray[2];
-    if (operator === "+") {
-        result = firstNumber + secondNumber;
-        clearArray(operationArray);
-        operationArray.push(result);
-        display(operationArray);
-        return result;
-    } else if (operator === "-") {
-        let result = firstNumber - secondNumber;
-        clearArray(operationArray);
-        operationArray.push(result);
-        display(operationArray);
-        return result;
-    } else if (operator === "*") {
-        let result = firstNumber * secondNumber;
-        clearArray(operationArray);
-        operationArray.push(result);
-        display(operationArray);
-        return result;
-    } else if (operator === "/") {
-        if (firstNumber !== 0 && secondNumber !== 0) {
-            let result = firstNumber / secondNumber;
-            clearArray(operationArray);
-            operationArray.push(result);
-            display(operationArray);
-        } else if (firstNumber === 0 && secondNumber === 0) {
-            display("Error");
-        }
-        return result;
+function handleEqualsSign() {
+    if (firstNumberOperation !== "") {
+        secondNumberOperation = formatingNumbers(inputNumber);
     }
-    initialize();
+    operate(firstNumberOperation, operator, secondNumberOperation);
+}
+
+// Formating variables 
+function formatingNumbers(value) {
+    if (value.includes(".") === true) {
+        return value = parseFloat(value);
+    } else {
+        return value = parseInt(value);
+    }
+};
+
+// Function to do mathematical operations
+function operate(firstValue, operatorSign, secondValue) {
+    let error;
+    if (operatorSign === "+") {
+        resultOperation = firstValue + secondValue;
+    } else if (operatorSign === "-") {
+        resultOperation = firstValue - secondValue;
+    } else if (operatorSign === "*") {
+        resultOperation = firstValue * secondValue;
+    } else if (operatorSign === "/") {
+        if (firstValue !== 0 && secondValue !== 0) {
+            resultOperation = firstValue / secondValue;
+        } else if (firstValue === 0 && secondValue === 0) {
+            error = "Error. Please use Clear."
+        }
+    }
+    clearOperationalNumbers();
+    firstNumberOperation = resultOperation;
+    display(error || resultOperation);
+}
+
+// Clear oprational numbers
+function clearOperationalNumbers() {
+    firstNumberOperation = "";
+    operator = "";
+    inputNumber = "";
+    secondNumberOperation = "";
+    isFloatNumber = false;
+    isNegativeNumber = false;
 }
 
 // Numbers Inputs 
 // Page consultée pour apprendre comment ajouter des Event Listener sur les keyboard keys: https://stackoverflow.com/questions/13196945/keycode-values-for-numeric-keypad / https://www.toptal.com/developers/keycode 
 
-let numberZero = document.querySelector('.zero');
-numberZero.addEventListener("click", getNumberZero);
+const numberZero = document.querySelector('.zero');
+numberZero.addEventListener("click", handleNumberZero);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "0") {
-        getNumberZero();
+        handleNumberZero();
     }
 });
 
-function getNumberZero() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(0);
+function handleNumberZero() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"0"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberOne = document.querySelector('.one');
-numberOne.addEventListener("click", getNumberOne);
+const numberOne = document.querySelector('.one');
+numberOne.addEventListener("click", handleNumberOne);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "1") {
-        getNumberOne();
+        handleNumberOne();
     }
 });
 
-function getNumberOne() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(1);
+function handleNumberOne() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"1"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberTwo = document.querySelector('.two');
-numberTwo.addEventListener("click", getNumberTwo);
+const numberTwo = document.querySelector('.two');
+numberTwo.addEventListener("click", handleNumberTwo);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "2") {
-        getNumberTwo();
+        handleNumberTwo();
     }
 });
 
-function getNumberTwo() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(2);
+function handleNumberTwo() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"2"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberThree = document.querySelector('.three');
-numberThree.addEventListener("click", getNumberThree);
+const numberThree = document.querySelector('.three');
+numberThree.addEventListener("click", handleNumberThree);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "3") {
-        getNumberThree();
+        handleNumberThree();
     }
 });
 
-function getNumberThree() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(3);
+function handleNumberThree() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"3"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberFour = document.querySelector('.four');
-numberFour.addEventListener("click", getNumberFour);
+const numberFour = document.querySelector('.four');
+numberFour.addEventListener("click", handleNumbeFour);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "4") {
-        getNumberFour();
+        handleNumbeFour();
     }
 });
 
-function getNumberFour() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(4);
+function handleNumbeFour() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"4"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberFive = document.querySelector('.five');
-numberFive.addEventListener("click", getNumberFive);
+const numberFive = document.querySelector('.five');
+numberFive.addEventListener("click", handleNumberFive);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "5") {
-        getNumberFive();
+        handleNumberFive();
     }
 });
 
-function getNumberFive() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(5);
+function handleNumberFive() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"5"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberSix = document.querySelector('.six');
-numberSix.addEventListener("click", getNumberSix);
+const numberSix = document.querySelector('.six');
+numberSix.addEventListener("click", handleNumberSix);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "6") {
-        getNumberSix();
+        handleNumberSix();
     }
 });
 
-function getNumberSix() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(6);
+function handleNumberSix() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"6"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberSeven = document.querySelector('.seven');
-numberSeven.addEventListener("click", getNumberSeven);
+const numberSeven = document.querySelector('.seven');
+numberSeven.addEventListener("click", handleNumberSeven);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "7") {
-        getNumberSeven();
+        handleNumberSeven();
     }
 });
 
-function getNumberSeven() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(7);
+function handleNumberSeven() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"7"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberEight = document.querySelector('.eight');
-numberEight.addEventListener("click", getNumberEight);
+const numberEight = document.querySelector('.eight');
+numberEight.addEventListener("click", handleNumberEight);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "8") {
-        getNumberEight();
+        handleNumberEight();
     }
 });
 
-function getNumberEight() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(8);
+function handleNumberEight() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"8"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
 
-let numberNine = document.querySelector('.nine');
-numberNine.addEventListener("click", getNumberNine);
+const numberNine = document.querySelector('.nine');
+numberNine.addEventListener("click", handleNumberNine);
 
-document.addEventListener("keypress", function (event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "9") {
-        getNumberNine();
+        handleNumberNine();
     }
 });
 
-function getNumberNine() {
-    if (numberArray.length < numberDigitsOperation) {
-        numberArray.push(9);
+function handleNumberNine() {
+    if (inputNumber.length < maxDigitNumbers) {
+        inputNumber = `${inputNumber}${"9"}`;
     }
-    display(numberArray);
+    display(inputNumber);
 }
