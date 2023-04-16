@@ -225,7 +225,7 @@ function handleEqualsSign() {
     if (firstNumberOperation !== "") {
         secondNumberOperation = formatingNumbers(inputNumber);
     }
-    if ( secondNumberOperation !== "" && inputNumber !== "") {
+    if (secondNumberOperation !== "" && inputNumber !== "") {
         operate(firstNumberOperation, operator, secondNumberOperation);
         displayUpperCalculatorValues(firstNumberOperation, "");
     }
@@ -258,8 +258,7 @@ function operate(firstValue, operatorSign, secondValue) {
         }
     }
     clearOperationalNumbers();
-    firstNumberOperation = resultOperation.toFixed(2);
-    // displayMainCalculatorValues(error || resultOperation);
+    firstNumberOperation = resultOperation;
     displayMainCalculatorValues(error || "");
     displayUpperCalculatorValues(resultOperation, "");
 }
