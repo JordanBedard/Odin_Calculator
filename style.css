@@ -76,8 +76,12 @@ body {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    height: 45px;
     width: 95%;
+    font-size: 30px;
+    padding-top: 6px;
     padding-bottom: 12px;
+    padding-right: 6px;
     user-select: none;
 }
 
@@ -85,10 +89,11 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-start;
+    height: 25px;
     width: 95%;
-    font-size: 16px;
     padding-bottom: 8px;
+    padding-right: 6px;
     user-select: none;
 }
 

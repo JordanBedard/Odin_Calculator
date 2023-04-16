@@ -227,7 +227,7 @@ function handleEqualsSign() {
     }
     if ( secondNumberOperation !== "" && inputNumber !== "") {
         operate(firstNumberOperation, operator, secondNumberOperation);
-        displayUpperCalculatorValues(firstNumberOperation, operator);
+        displayUpperCalculatorValues(firstNumberOperation, "");
     }
 }
 
@@ -254,11 +254,14 @@ function operate(firstValue, operatorSign, secondValue) {
             resultOperation = firstValue / secondValue;
         } else if (firstValue === 0 && secondValue === 0) {
             error = "Error. Please use Clear."
+            displayUpperCalculatorValues("", "");
         }
     }
     clearOperationalNumbers();
-    firstNumberOperation = resultOperation;
-    displayMainCalculatorValues(error || resultOperation);
+    firstNumberOperation = resultOperation.toFixed(2);
+    // displayMainCalculatorValues(error || resultOperation);
+    displayMainCalculatorValues(error || "");
+    displayUpperCalculatorValues(resultOperation, "");
 }
 
 // Clear oprational numbers
