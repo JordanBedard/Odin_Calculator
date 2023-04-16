@@ -7,6 +7,7 @@ let secondNumberOperation = "";
 let resultOperation = 0;
 let isFloatNumber = false;
 let isNegativeNumber = false;
+displayMainCalculatorValues("0");
 
 function initialize() {
     resultOperation = 0;
@@ -16,21 +17,21 @@ function initialize() {
     secondNumberOperation = "";
     isFloatNumber = false;
     isNegativeNumber = false;
-    display(inputNumber);
+    displayUpperCalculatorValues("", "");
+    displayMainCalculatorValues("0");
 }
 
-// Display
-function display(value) {
+// Main display of values in the main area of the calculator 
+function displayMainCalculatorValues(value) {
     const display = document.querySelector(".calculatorDisplay");
     display.textContent = value;
 }
 
-// Retravailler pour display les éléments en haut de la calculatrice 
-
-// function displayInputValues(value, operator) {
-//     const display = document.querySelector(".calculatorSecondDisplay");
-//     display.textContent = value + operator;
-// }
+// Secondary display of values used in operation in the upper area of the calculator
+function displayUpperCalculatorValues(value, operator) {
+    const display = document.querySelector(".calculatorSecondDisplay");
+    display.textContent = `${value}${operator}`;
+}
 
 // Clear Calculator
 const clear = document.querySelector('.clear');
@@ -59,11 +60,10 @@ document.addEventListener("keydown", function (event) {
 
 function removeLastDigitFromString() {
     inputNumber = inputNumber.slice(0, -1);
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 // Decimal Sign
-
 const decimalSign = document.querySelector('.decimal')
 decimalSign.addEventListener("click", handleDecimalSign);
 
@@ -90,7 +90,7 @@ function handleDecimalSign() {
             isFloatNumber = false; 
         }
     }
-    display(inputNumber); 
+    displayMainCalculatorValues(inputNumber); 
 }
 
 // Negative Sign
@@ -106,7 +106,7 @@ function handleNegativeSign() {
         inputNumber = inputNumber.slice(1);
         isNegativeNumber = false;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 // Operators
@@ -133,6 +133,7 @@ function handlePlusSign() {
     }
     inputNumber = "";
     resetDecimalandNegativeSigns();
+    displayUpperCalculatorValues(firstNumberOperation, operator);
 }
 
 // Minus Sign
@@ -157,6 +158,7 @@ function handleMinusSign() {
     }
     inputNumber = "";
     resetDecimalandNegativeSigns();
+    displayUpperCalculatorValues(firstNumberOperation, operator);
 }
 
 // Multiply Sign
@@ -181,6 +183,7 @@ function handleMultiplySign() {
     }
     inputNumber = "";
     resetDecimalandNegativeSigns();
+    displayUpperCalculatorValues(firstNumberOperation, operator);
 }
 
 // Divise Sign
@@ -205,10 +208,10 @@ function handleDivideSign() {
     }
     inputNumber = "";
     resetDecimalandNegativeSigns();
+    displayUpperCalculatorValues(firstNumberOperation, operator);
 }
 
 // Equals Sign
-
 const equalsSign = document.querySelector('.equalsSign')
 equalsSign.addEventListener("click", handleEqualsSign);
     
@@ -222,7 +225,10 @@ function handleEqualsSign() {
     if (firstNumberOperation !== "") {
         secondNumberOperation = formatingNumbers(inputNumber);
     }
-    operate(firstNumberOperation, operator, secondNumberOperation);
+    if ( secondNumberOperation !== "" && inputNumber !== "") {
+        operate(firstNumberOperation, operator, secondNumberOperation);
+        displayUpperCalculatorValues(firstNumberOperation, operator);
+    }
 }
 
 // Formating variables 
@@ -252,13 +258,12 @@ function operate(firstValue, operatorSign, secondValue) {
     }
     clearOperationalNumbers();
     firstNumberOperation = resultOperation;
-    display(error || resultOperation);
+    displayMainCalculatorValues(error || resultOperation);
 }
 
 // Clear oprational numbers
 function clearOperationalNumbers() {
     firstNumberOperation = "";
-    operator = "";
     inputNumber = "";
     secondNumberOperation = "";
     isFloatNumber = false;
@@ -266,8 +271,6 @@ function clearOperationalNumbers() {
 }
 
 // Numbers Inputs 
-// Page consultée pour apprendre comment ajouter des Event Listener sur les keyboard keys: https://stackoverflow.com/questions/13196945/keycode-values-for-numeric-keypad / https://www.toptal.com/developers/keycode 
-
 const numberZero = document.querySelector('.zero');
 numberZero.addEventListener("click", handleNumberZero);
 
@@ -281,7 +284,7 @@ function handleNumberZero() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"0"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberOne = document.querySelector('.one');
@@ -297,7 +300,7 @@ function handleNumberOne() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"1"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberTwo = document.querySelector('.two');
@@ -313,7 +316,7 @@ function handleNumberTwo() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"2"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberThree = document.querySelector('.three');
@@ -329,7 +332,7 @@ function handleNumberThree() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"3"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberFour = document.querySelector('.four');
@@ -345,7 +348,7 @@ function handleNumbeFour() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"4"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberFive = document.querySelector('.five');
@@ -361,7 +364,7 @@ function handleNumberFive() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"5"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberSix = document.querySelector('.six');
@@ -377,7 +380,7 @@ function handleNumberSix() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"6"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberSeven = document.querySelector('.seven');
@@ -393,7 +396,7 @@ function handleNumberSeven() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"7"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberEight = document.querySelector('.eight');
@@ -409,7 +412,7 @@ function handleNumberEight() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"8"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
 
 const numberNine = document.querySelector('.nine');
@@ -425,5 +428,5 @@ function handleNumberNine() {
     if (inputNumber.length < maxDigitNumbers) {
         inputNumber = `${inputNumber}${"9"}`;
     }
-    display(inputNumber);
+    displayMainCalculatorValues(inputNumber);
 }
