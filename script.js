@@ -78,7 +78,7 @@ function handleDecimalSign() {
         let isDecimalPointExists = false;
         if (inputNumber.includes(".") === true) {
             isDecimalPointExists = true;
-        }   
+        }
         if (!isDecimalPointExists) {
             inputNumber = `${inputNumber}${"."}`;
             isFloatNumber = true;
@@ -86,11 +86,11 @@ function handleDecimalSign() {
     } else if (isFloatNumber) {
         const decimalPoint = inputNumber.charAt(inputNumber.length - 1);
         if (decimalPoint === ".") {
-            inputNumber = inputNumber.slice(0,-1);
-            isFloatNumber = false; 
+            inputNumber = inputNumber.slice(0, -1);
+            isFloatNumber = false;
         }
     }
-    displayMainCalculatorValues(inputNumber); 
+    displayMainCalculatorValues(inputNumber);
 }
 
 // Negative Sign
@@ -122,6 +122,9 @@ document.addEventListener("keydown", function (event) {
 });
 
 function handlePlusSign() {
+    if (inputNumber === "" && firstNumberOperation === "") {
+        return
+    }
     operator = "+";
     if (firstNumberOperation === "") {
         firstNumberOperation = formatingNumbers(inputNumber);
@@ -147,6 +150,9 @@ document.addEventListener("keydown", function (event) {
 });
 
 function handleMinusSign() {
+    if (inputNumber === "" && firstNumberOperation === "") {
+        return
+    }
     operator = "-";
     if (firstNumberOperation === "") {
         firstNumberOperation = formatingNumbers(inputNumber);
@@ -172,6 +178,9 @@ document.addEventListener("keydown", function (event) {
 });
 
 function handleMultiplySign() {
+    if (inputNumber === "" && firstNumberOperation === "") {
+        return
+    }
     operator = "*";
     if (firstNumberOperation === "") {
         firstNumberOperation = formatingNumbers(inputNumber);
@@ -197,6 +206,9 @@ document.addEventListener("keydown", function (event) {
 });
 
 function handleDivideSign() {
+    if (inputNumber === "" && firstNumberOperation === "") {
+        return
+    }
     operator = "/";
     if (firstNumberOperation === "") {
         firstNumberOperation = formatingNumbers(inputNumber);
@@ -214,7 +226,7 @@ function handleDivideSign() {
 // Equals Sign
 const equalsSign = document.querySelector('.equalsSign')
 equalsSign.addEventListener("click", handleEqualsSign);
-    
+
 document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         handleEqualsSign();
@@ -250,17 +262,16 @@ function operate(firstValue, operatorSign, secondValue) {
     } else if (operatorSign === "*") {
         resultOperation = firstValue * secondValue;
     } else if (operatorSign === "/") {
-        if (firstValue !== 0 && secondValue !== 0) {
-            resultOperation = firstValue / secondValue;
-        } else if (firstValue === 0 && secondValue === 0) {
-            error = "Error. Please use Clear."
-            displayUpperCalculatorValues("", "");
-        }
+        resultOperation = firstValue / secondValue;
+    } if (firstValue === 0 && secondValue === 0) {
+        let errorMessage = "Error. Please use Clear."
+        error = errorMessage;
     }
-    clearOperationalNumbers();
-    firstNumberOperation = resultOperation;
-    displayMainCalculatorValues(error || "");
+    clearOperationalNumbers()
+    resultOperation = resultOperation.toFixed(4);
+    firstNumberOperation = parseFloat(resultOperation);
     displayUpperCalculatorValues(resultOperation, "");
+    displayMainCalculatorValues(error || "");
 }
 
 // Clear oprational numbers
@@ -273,6 +284,7 @@ function clearOperationalNumbers() {
 }
 
 // Numbers Inputs 
+
 const numberZero = document.querySelector('.zero');
 numberZero.addEventListener("click", handleNumberZero);
 
