@@ -107,7 +107,7 @@ body {
     margin-bottom: 12px;
 }
 
-.clear {
+.calculatorControls>div {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -115,8 +115,7 @@ body {
     width: 50%;
     height: 50px;
     text-align: center;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-left: 3px;
     margin-right: 3px;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -134,29 +133,6 @@ body {
     cursor: pointer;
     background-color: #d6e0e6;
     filter: brightness(100%);
-}
-
-.erase {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 50px;
-    text-align: center;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-left: 3px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 22px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
 }
 
 .erase:hover {
@@ -195,7 +171,7 @@ body {
     gap: 12px;
 }
 
-.seven {
+.digitsFirstRow>div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -218,44 +194,10 @@ body {
     filter: brightness(100%);
 }
 
-.eight {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
-}
-
 .eight:hover {
     cursor: pointer;
     background-color: #d6e0e6;
     filter: brightness(100%);
-}
-
-.nine {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
 }
 
 .nine:hover {
@@ -273,7 +215,7 @@ body {
     gap: 12px;
 }
 
-.four {
+.digitsSecondRow>div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -296,44 +238,10 @@ body {
     filter: brightness(100%);
 }
 
-.five {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
-}
-
 .five:hover {
     cursor: pointer;
     background-color: #d6e0e6;
     filter: brightness(100%);
-}
-
-.six {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
 }
 
 .six:hover {
@@ -351,7 +259,7 @@ body {
     gap: 12px;
 }
 
-.one {
+.digitsThirdRow>div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -374,45 +282,10 @@ body {
     filter: brightness(100%);
 }
 
-.two {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
-}
-
 .two:hover {
     cursor: pointer;
     background-color: #d6e0e6;
     filter: brightness(100%);
-}
-
-
-.three {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
 }
 
 .three:hover {
@@ -430,7 +303,7 @@ body {
     gap: 12px;
 }
 
-.negative {
+.digitsFourthRow>div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -453,44 +326,10 @@ body {
     filter: brightness(100%);
 }
 
-.zero {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
-}
-
 .zero:hover {
     cursor: pointer;
     background-color: #d6e0e6;
     filter: brightness(100%);
-}
-
-.decimal {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100px;
-    width: 30%;
-    text-align: center;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 24px;
-    font-weight: 600;
-    background-color: #BDCDD6;
-    user-select: none;
 }
 
 .decimal:hover {
@@ -498,7 +337,6 @@ body {
     background-color: #d6e0e6;
     filter: brightness(100%);
 }
-
 
 .calculatorOperators {
     display: flex;
@@ -510,7 +348,7 @@ body {
     height: 100%;
 }
 
-.plusSign {
+.calculatorOperators>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -532,42 +370,10 @@ body {
     filter: brightness(100%);
 }
 
-.minusSign {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 18%;
-    font-size: 24px;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 32px;
-    font-weight: 500;
-    background-color: #BDCDD6;
-    user-select: none;
-}
-
 .minusSign:hover {
     cursor: pointer;
     background-color: #d6e0e6;
     filter: brightness(100%);
-}
-
-.multiplySign {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 18%;
-    font-size: 24px;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 32px;
-    font-weight: 500;
-    background-color: #BDCDD6;
-    user-select: none;
 }
 
 .multiplySign:hover {
@@ -576,42 +382,10 @@ body {
     filter: brightness(100%);
 }
 
-.divideSign {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 18%;
-    font-size: 24px;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 32px;
-    font-weight: 500;
-    background-color: #BDCDD6;
-    user-select: none;
-}
-
 .divideSign:hover {
     cursor: pointer;
     background-color: #d6e0e6;
     filter: brightness(100%);
-}
-
-.equalsSign {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 18%;
-    font-size: 24px;
-    border-style: solid;
-    border-color: #000000;
-    border-width: 1px;
-    border-radius: 6px;
-    font-size: 32px;
-    font-weight: 500;
-    background-color: #BDCDD6;
-    user-select: none;
 }
 
 .equalsSign:hover {
