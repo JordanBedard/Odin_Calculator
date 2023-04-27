@@ -123,7 +123,10 @@ document.addEventListener("keydown", function (event) {
 
 function handlePlusSign() {
     if (inputNumber === "" && firstNumberOperation === "") {
-        return
+        return;
+    }
+    if ((inputNumber.charAt(0) === "." || inputNumber.charAt(0) === "-") && inputNumber.length < 2) {
+        return;
     }
     operator = "+";
     if (firstNumberOperation === "") {
@@ -151,7 +154,10 @@ document.addEventListener("keydown", function (event) {
 
 function handleMinusSign() {
     if (inputNumber === "" && firstNumberOperation === "") {
-        return
+        return;
+    }
+    if ((inputNumber.charAt(0) === "." || inputNumber.charAt(0) === "-") && inputNumber.length < 2) {
+        return;
     }
     operator = "-";
     if (firstNumberOperation === "") {
@@ -179,7 +185,10 @@ document.addEventListener("keydown", function (event) {
 
 function handleMultiplySign() {
     if (inputNumber === "" && firstNumberOperation === "") {
-        return
+        return;
+    }
+    if ((inputNumber.charAt(0) === "." || inputNumber.charAt(0) === "-") && inputNumber.length < 2) {
+        return;
     }
     operator = "*";
     if (firstNumberOperation === "") {
@@ -207,7 +216,10 @@ document.addEventListener("keydown", function (event) {
 
 function handleDivideSign() {
     if (inputNumber === "" && firstNumberOperation === "") {
-        return
+        return;
+    }
+    if ((inputNumber.charAt(0) === "." || inputNumber.charAt(0) === "-") && inputNumber.length < 2) {
+        return;
     }
     operator = "/";
     if (firstNumberOperation === "") {
@@ -234,6 +246,9 @@ document.addEventListener("keydown", function (event) {
 });
 
 function handleEqualsSign() {
+    if ((inputNumber.charAt(0) === "." || inputNumber.charAt(0) === "-") && inputNumber.length < 2) {
+        return;
+    }
     if (firstNumberOperation !== "") {
         secondNumberOperation = formatingNumbers(inputNumber);
     }
